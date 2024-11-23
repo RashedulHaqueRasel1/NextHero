@@ -39,6 +39,10 @@ const NavBar = () => {
             title: 'Users',
             path: '/users'
         },
+        {
+            title: 'Meals',
+            path: '/meals'
+        },
 
     ]
 

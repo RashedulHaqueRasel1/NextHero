@@ -9,11 +9,22 @@ const getAllUser = async (id) => {
 }
 
 
+export const generateMetadata = async ({ params }) => {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
+    const data = await res.json()
+
+    return {
+        title: `${data.title}`,
+        description: `${data.body}`,
+        keywords: data.body.split(" ")
+    }
+
+}
 
 
 const userDetailsPage = async ({ params }) => {
 
-    const {title, body} = await getAllUser(params.id)
+    const { title, body } = await getAllUser(params.id)
 
     // console.log(userDetails)
 
