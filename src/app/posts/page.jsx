@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 const getPosts = async () => {
     const res = await fetch("https://jsonplaceholder.typicode.com/posts")
@@ -14,15 +15,17 @@ const page = async () => {
     // console.log(postData)
 
     return (
-        <div>
-            <h1>Total Post {postData.length}</h1>
+        <div className="mx-auto container">
+            <h1 className="text-3xl text-center font-bold my-10">Total Post {postData.length}</h1>
 
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-4 my-6">
                 {
-                    postData?.map(({ title, body, id }) => (
-                        <div key={id} className="border-2 p-4">
-                            <h1>{title}</h1>
-                            <p>{body}</p>
+                    postData?.slice(0,20).map(({ title, body, id }) => (
+                        <div key={id} className="border-2 p-4 bg-cyan-900 text-white ">
+                            <h1 className="text-2xl text-orange-500 font-medium">Title : {title}</h1>
+                            <br />
+                            <p className="">Description : {body}</p>
+                            <Link href={`/posts/${id}`}><button className="bg-yellow-600 p-2">See More</button></Link>
                         </div>
                     ))
                 }
