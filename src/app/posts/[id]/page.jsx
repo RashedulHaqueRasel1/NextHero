@@ -30,7 +30,7 @@ const userDetailsPage = async ({ params }) => {
 
     return (
         <div>
-            <h1 className="text-2xl text-orange-500 font-medium text-center my-10" >{title}</h1>
+            <h1 className="text-2xl text-orange-500 font-medium text-center my-10" >Title : {title}</h1>
             <p className="text-center">Description : {body}</p>
         </div>
     );
