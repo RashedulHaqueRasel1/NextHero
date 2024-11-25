@@ -1,7 +1,9 @@
 "use client"
 
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { signOut } from "next-auth/react"
 
 // import Link from "next/link";
 
@@ -9,6 +11,8 @@ const NavBar = () => {
 
     const pathName = usePathname();
     const router = useRouter()
+    const session = useSession();
+    console.log(session)
 
     const links = [
         {
@@ -43,11 +47,15 @@ const NavBar = () => {
             title: 'Meals',
             path: '/meals'
         },
+        {
+            title: 'Comments',
+            path: '/comments'
+        },
 
     ]
 
     const handleLogin = (path) => {
-        router.push('/login')
+        router.push('/api/auth/signin')
     };
 
 
@@ -90,7 +98,13 @@ const NavBar = () => {
                         }
                     </ul>
 
-                    <button onClick={handleLogin} className="bg-blue-500 p-3 border rounded-xl font-bold">Login</button>
+                    {!session.status === 'authenticated' ? <button onClick={handleLogin} className="bg-blue-500 p-3 border rounded-xl font-bold">Login</button>
+                        :
+                        <>
+                            <button onClick={() => signOut()} className="bg-blue-500 p-3 border rounded-xl font-bold">Log Out</button>
+                            <button onClick={handleLogin} className="bg-blue-500 p-3 border rounded-xl font-bold">Login</button>
+                        </>
+                    }
                 </div>
 
             </nav>

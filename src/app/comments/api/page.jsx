@@ -1,4 +1,7 @@
-import { getAllUsers } from "../getAllApi/getAllApi";
+// import { getAllUsers } from "../getAllApi/getAllApi";
+
+import { getAllUsers } from "@/app/getAllApi/getAllApi";
+import Link from "next/link";
 
 
 const UsersPage = async () => {
@@ -9,7 +12,7 @@ const UsersPage = async () => {
     return (
         <div className="mx-auto container">
 
-            <h1 className="text-3xl text-center font-bold my-10">Total Users {totalUsers.length}</h1>
+            <h1 className="text-3xl text-center font-bold my-10">Total Users</h1>
 
             <div className="grid grid-cols-4 gap-4">
             {
@@ -23,6 +26,8 @@ const UsersPage = async () => {
                                         <p className="">Email : {user.email}</p>
                                         <p className="">Phone : {user.phone}</p>
                                         <p className="">WebSite : {user.website}</p>
+
+                                        <Link href={`/comments/api/${user.id}`} className="bg-rose-400 p-3"><button>see More</button></Link>
                                     </div>
                                 </div>
                             </div>
